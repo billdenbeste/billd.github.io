@@ -14,11 +14,9 @@ $(function() {
   let serviceUuid = BATTERY_SERVICE_UUID;
   let characteristicUuid = XBATTV_CHAR_UUID;
 
-  $("#test").click(() => { 
+  $("#connect").click( () => { $("#full_screen").requestFullscreen(); })
 
-    $("#notifiedValue").text('Ready');
-
-  })
+  $("#test").click( () => { $("#notifiedValue").text('Ready'); })
 
 });
 
