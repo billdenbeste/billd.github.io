@@ -53,10 +53,9 @@ $(function() {
 function handleXBattV(event) {
 	var value = event.target.value.getUint8(0);
 	$("#xbattvalue").text("" + value);
-})
+}
 
 function handleIBattV(event) {
 	var value = event.target.value.getUint8(0);
 	$("#ibattvalue").text("" + value);
-})
-
+}
