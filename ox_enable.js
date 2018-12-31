@@ -10,7 +10,7 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 $(function() {
 	var requestDeviceParams = {
-		optionalServices: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ],
+		services: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ],
 		acceptAllDevices: true
 	};
 
