@@ -10,7 +10,7 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 $(function() {
 	var requestDeviceParams = {
-		filters: [ { prefix: [ "Ox" ] } ],
+		filters: [ { name: [ "Ox 0" ] } ],
 		optionalServices: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ]
 	};
 
@@ -23,10 +23,6 @@ $(function() {
 			var setEnable = Uint8Array.of( 0x31 );
 			return characteristic.writeValue( setEnable );
 		})
-		.then(_ => {
-	  		console.log( 'Ox Enabled' );
-		})
-
 		.catch(error => { console.log(error); });
 	})
 })
