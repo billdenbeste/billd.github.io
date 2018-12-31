@@ -12,7 +12,7 @@ $(function() {
 	var requestDeviceParams = {
 		filters: [ { name: ["Ox 0"] } ],
 		optionalServices: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ]
-	];
+	};
 
 	$("#connect").click(() => {
 		navigator.bluetooth.requestDevice( requestDeviceParams )
