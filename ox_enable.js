@@ -12,7 +12,9 @@ $(function() {
 
 	$("#connect").click(() => {
 		navigator.bluetooth.requestDevice({ 
-			filters: [ { name: [ "Ox 0" ] } ]
+			filters: [ 
+				{ services: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ] } 
+			]
 		})
 		.then( device => device.gatt.connect() )
 		.then( server => server.getPrimaryService( "f3e031b2-f057-4dbc-917d-8cacf6e78234" ) )
