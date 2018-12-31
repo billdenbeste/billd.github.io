@@ -11,13 +11,13 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 $(function() {
 
 	$("#connect").click(() => {
-
 		navigator.bluetooth.requestDevice({ 
-			filters: [ { services: ENABLE_SERVICE_UUID } ] 
+			filters: [ { name: [ "Ox 0" ] } ],
+			optionalServices: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ] 
 		})
 		.then( device => device.gatt.connect() )
-		.then( server => server.getPrimaryService( ENABLE_SERVICE_UUID ) )
-		.then( service => service.getCharacteristic( ENABLE_SERVICE_FLAG ) )
+		.then( server => server.getPrimaryService( "f3e031b2-f057-4dbc-917d-8cacf6e78234" ) )
+		.then( service => service.getCharacteristic( "17603fac-2e15-4afd-962d-107464389c5a" ) )
 		.then( characteristic => {
 			var setEnable = Uint8Array.of( 0x31 );
 			return characteristic.writeValue( setEnable );
