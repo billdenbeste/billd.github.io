@@ -24,6 +24,8 @@ $(function() {
 		};
 
 		$("#enable").hide();
+		$("#xbattvalue").text("");
+		$("#ibattvalue").text("");
 
 		navigator.bluetooth.requestDevice( requestDeviceParams )
 
@@ -113,6 +115,8 @@ $(function() {
 		disconnect();
 		$("#device_name").text("not connected");
 		$("#enable").hide();
+		$("#xbattvalue").text("");
+		$("#ibattvalue").text("");
 	});
 
 	$("#enable").click(() => {
