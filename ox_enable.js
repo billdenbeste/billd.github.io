@@ -47,9 +47,9 @@ $(function() {
 
 	function handleXBattV(event) {
 		var value = event.target.value;
-		let a = [];
+		let a = "";
 		for( let i = 0; i < value.byteLength; i++ ) {
-			a[i] = value.getUint8(i);
+			a += String.fromCharCode(parseInt(array[i].2));
 		}
 		$("#xbattvalue").text( a );
 	}
