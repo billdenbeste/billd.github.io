@@ -10,9 +10,13 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
 
-$("#connect").click() { connect(); }
+$("#connect").click( function() {
+	connect();
+});
 
-$("#disconnect").click() { disconnect(); )
+$("#disconnect").click( function() {
+	disconnect();
+});
 
 function connect() {
 	var requestDeviceParams = {
