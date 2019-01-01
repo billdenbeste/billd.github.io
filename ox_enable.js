@@ -47,11 +47,7 @@ $(function() {
 
 	function handleXBattV(event) {
 		var value = event.target.value;
-		let a = [];
-		for( let i = 0; i < value.bytelength; i++ ) {
-			a.push( '0x' + ( '00' + value.getUint8(i).toString(16)).slice(-2)); 
-		}
-		$("#xbattvalue").text(a.join(' '));
+		$("#xbattvalue").text( String.fromCharCode.apply(null, new Uint8Array(value)));
 	}
 
 	function disconnect() {
