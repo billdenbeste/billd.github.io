@@ -96,7 +96,7 @@ $(function() {
 		.then( function(characteristic) {
 			var setEnable = Uint8Array.of( 0x31 );
 			characteristic.writeValue( setEnable );
-		}
+		})
 	}
 
 	$("#connect").click(() => {
