@@ -62,7 +62,7 @@ $(function() {
 
 	function disconnect() {
 		if( OxDevice ) {
-			OxDevice.disconnect();
+			OxDevice.gatt.disconnect();
 		}
 	}
 
