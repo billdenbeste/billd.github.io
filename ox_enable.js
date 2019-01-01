@@ -16,10 +16,10 @@ var OxEnableChar;
 
 $(function() {
 	$("#connect").show();
+	$("#disconnect").hide();
 	$("#enable").hide();
 	$("#xbattvalue").text("");
 	$("#ibattvalue").text("");
-	$("#disconnect").hide();
 
 	function connect() {
 		var requestDeviceParams = {
@@ -79,7 +79,7 @@ $(function() {
 			$("#enable").show();
 		})
 
-		.catch(error => { console.error(error); });
+		.catch((error) => { console.error(error); });
 	}
 
 	function handleXBattV(event) {
@@ -118,8 +118,9 @@ $(function() {
 	$("#disconnect").click(() => {
 		disconnect();
 		$("#connect").show();
-		$("#device_name").text("not connected");
+		$("#disconnect").hide();
 		$("#enable").hide();
+		$("#device_name").text("not connected");
 		$("#xbattvalue").text("");
 		$("#ibattvalue").text("");
 	});
