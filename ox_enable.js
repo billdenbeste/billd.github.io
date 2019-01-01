@@ -15,6 +15,12 @@ var OxEnableService;
 var OxEnableChar;
 
 $(function() {
+	$("#connect").show();
+	$("#enable").hide();
+	$("#xbattvalue").text("");
+	$("#ibattvalue").text("");
+	$("#disconnect").hide();
+
 	function connect() {
 		var requestDeviceParams = {
 			filters: [
@@ -22,12 +28,6 @@ $(function() {
 			],
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 		};
-
-		$("#connect").show();
-		$("#enable").hide();
-		$("#xbattvalue").text("");
-		$("#ibattvalue").text("");
-		$("#disconnect").hide();
 
 		navigator.bluetooth.requestDevice( requestDeviceParams )
 
