@@ -61,10 +61,6 @@ $(function() {
 			OxEnableService = OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
 		})
 
-		.then( function(service) {
-			OxEnableChar = service.getCharacteristic( ENABLE_FLAG_UUID );
-		})
-
 		.catch(error => { console.error(error); });
 	}
 
