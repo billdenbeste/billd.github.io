@@ -44,7 +44,7 @@ $(function() {
 		})
 
 		.then( function(OxService) {
-			return OxService.getCharacteristic( IVATTV_CHAR_UUID );
+			return OxService.getCharacteristic( IBATTV_CHAR_UUID );
 		})
 
 		.then( function(characteristic) {
