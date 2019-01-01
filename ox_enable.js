@@ -21,7 +21,7 @@ $(function() {
 
 		.then( function(device) {
 			OxDevice = device;
-			return device => device.gatt.connect();
+			return device.gatt.connect();
 		})
 
 		.then( function(server) {
