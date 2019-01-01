@@ -59,7 +59,15 @@ $(function() {
 		})		
 
 		.then( function() {
-			OxEnableService = OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+			return OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+		})
+
+		.then( function(service) {
+			return service.getCharacteristic( ENABLE_FLAG_UUID );
+		})
+
+		.then( function(characteristic) {
+			OxEnableChar = characteristic;
 		})
 
 		.catch(error => { console.error(error); });
@@ -90,11 +98,8 @@ $(function() {
 	}
 
 	function EnableOx() {
-		characteristic = OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
-		.then( function(characteristic) {
-			var setEnable = Uint8Array.of( 0x31 );
-			characteristic.writeValue( setEnable );
-		})
+		var setEnable = Uint8Array.of( 0x31 );
+		OxEnableChar.writeValue( setEnable );
 	}
 
 	$("#connect").click(() => {
