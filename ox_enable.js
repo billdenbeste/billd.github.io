@@ -9,7 +9,9 @@ const ENABLE_SERVICE_UUID     = "f3e031b2-f057-4dbc-917d-8cacf6e78234";
 const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
+var OxServer;
 var OxBattService;
+var OxEnableChar;
 
 $(function() {
 	function connect() {
@@ -28,6 +30,7 @@ $(function() {
 		})
 
 		.then( function(server) {
+			OxServer = server;
 			return server.getPrimaryService( BATTERY_SERVICE_UUID );
 		})
 
@@ -52,6 +55,14 @@ $(function() {
 			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
 			})
 		})		
+
+		.then( function() {
+			return OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+		})
+
+		.then( function(service) {
+			OxEnableChar = service.getCharacteristic( ENABLE_FLAG_UUID );
+		})
 
 		.catch(error => { console.error(error); });
 	}
@@ -81,11 +92,22 @@ $(function() {
 		}
 	}
 
+	function EnableOx() {
+		if( OxEnableChar ) {
+			var setEnable = Uint8Array.of( 0x31 );
+			OxEnableChar.writeValue( setEnable );
+		}
+	}
+
 	$("#connect").click(() => {
 		connect();
 	});
 
 	$("#disconnect").click(() => {
 		disconnect();
+	});
+
+	$("#enable").click(() => {
+		EnableOx();
 	});
 })
