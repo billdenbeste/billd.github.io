@@ -11,6 +11,7 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 var OxDevice;
 var OxServer;
 var OxBattService;
+var OxEnableService;
 var OxEnableChar;
 
 $(function() {
@@ -57,7 +58,7 @@ $(function() {
 		})		
 
 		.then( function() {
-			return OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+			OxEnableService = OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
 		})
 
 		.then( function(service) {
@@ -76,7 +77,6 @@ $(function() {
 		$("#xbattvalue").text( a );
 	}
 
-
 	function handleIBattV(event) {
 		var value = event.target.value;
 		let a = "";
@@ -93,7 +93,8 @@ $(function() {
 	}
 
 	function EnableOx() {
-		if( OxEnableChar ) {
+		if( OxEnableService ) {
+			OxEnableChar = OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 			var setEnable = Uint8Array.of( 0x31 );
 			OxEnableChar.writeValue( setEnable );
 		}
