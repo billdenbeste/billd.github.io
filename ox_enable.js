@@ -47,7 +47,8 @@ $(function() {
 
 	function handleXBattV(event) {
 		var value = event.target.value;
-		$("#xbattvalue").text( String.fromCharCode.apply(null, new Uint8Array(value)));
+		let a = String.fromCharCode.apply(null, new Uint8Array(value));
+		$("#xbattvalue").text( a );
 	}
 
 	function disconnect() {
