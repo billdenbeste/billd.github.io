@@ -18,8 +18,6 @@ $(function() {
 	$("#connect").show();
 	$("#disconnect").hide();
 	$("#enable").hide();
-	$("#xbattvalue").text("");
-	$("#ibattvalue").text("");
 
 	function connect() {
 		var requestDeviceParams = {
