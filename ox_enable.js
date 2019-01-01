@@ -47,11 +47,11 @@ $(function() {
 
 	function handleXBattV(event) {
 		var value = event.target.value;
-		let newstr = [];
-		for(; index + 1 < value.bytelength; index += 1 ) {
-			newstr.push(value.getUint8(index, true));
+		let a = [];
+		for( let i = 0; i < value.bytelength; i++ ) {
+			a.push( '0x' + ( '00' + value.getUint8(i).toString(16)).slice(-2)); 
 		}
-		$("#xbattvalue").text(newstr);
+		$("#xbattvalue").text(a.join(' '));
 	}
 
 	function disconnect() {
