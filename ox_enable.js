@@ -10,64 +10,67 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
 
-function connect() {
-	var requestDeviceParams = {
-		services: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ],
-		acceptAllDevices: true
-	};
+$(function() {
+	function connect() {
+		var requestDeviceParams = {
+			services: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ],
+			acceptAllDevices: true
+		};
 
-	navigator.bluetooth.requestDevice( requestDeviceParams )
+		navigator.bluetooth.requestDevice( requestDeviceParams )
 
-	.then( function(device) {
-		OxDevice = device;
-		return device => device.gatt.connect();
-	})
+		.then( function(device) {
+			OxDevice = device;
+			return device => device.gatt.connect();
+		})
 
-	.then( function(server) {
-		return server.getPrimaryService( BATTERY_SERVICE_UUID );
-	})
+		.then( function(server) {
+			return server.getPrimaryService( BATTERY_SERVICE_UUID );
+		})
 
 
-	.then( function(service) {
-		return service.getCharacteristic( XBATTV_CHAR_UUID );
-	})
+		.then( function(service) {
+			return service.getCharacteristic( XBATTV_CHAR_UUID );
+		})
 
-	.then( function(characteristic) {
-		characteristic.startNotifications()
-		.then( characteristic.oncharacteristicValuechanged = handleXBattV );
-	})
+		.then( function(characteristic) {
+			characteristic.startNotifications()
+			.then( characteristic.oncharacteristicValuechanged = handleXBattV );
+		})
 
-	.then( function(service) {
-		return service.getCharacteristic( IBATTV_SERVICE_UUID );
-	})
+		.then( function(service) {
+			return service.getCharacteristic( IBATTV_SERVICE_UUID );
+		})
 
-	.then( function(characteristic) {
-		characteristic.startNotifications()
-		.then( characteristic.oncharacteristicValuechanged = handleIBattV );
-	})
-	.catch(error => { console.log(error); });
-}
+		.then( function(characteristic) {
+			characteristic.startNotifications()
+			.then( characteristic.oncharacteristicValuechanged = handleIBattV );
+		})
 
-function handleXBattV(event) {
-	var value = event.target.value.getUint8(0);
-	$("#xbattvalue").text("" + value);
-}
-
-function handleIBattV(event) {
-	var value = event.target.value.getUint8(0);
-	$("#ibattvalue").text("" + value);
-}
-
-function disconnect() {
-	if( OxDevice ) {
-		OxDevice.disconnect();
+		.catch(error => { console.log(error); });
 	}
-}
 
-$("#connect").click(() => {
-	connect();
-});
+	function handleXBattV(event) {
+		var value = event.target.value.getUint8(0);
+		$("#xbattvalue").text("" + value);
+	}
 
-$("#disconnect").click(() => {
-	disconnect();
-});
+	function handleIBattV(event) {
+		var value = event.target.value.getUint8(0);
+		$("#ibattvalue").text("" + value);
+	}
+
+	function disconnect() {
+		if( OxDevice ) {
+			OxDevice.disconnect();
+		}
+	}
+
+	$("#connect").click(() => {
+		connect();
+	});
+
+	$("#disconnect").click(() => {
+		disconnect();
+	});
+})
