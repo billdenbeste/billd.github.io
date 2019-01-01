@@ -49,7 +49,7 @@ $(function() {
 		var value = event.target.value;
 		let newstr = [];
 		for(; index + 1 < value.bytelength; index += 1 ) {
-			newstr.push(value.getUint8(index, true);
+			newstr.push(value.getUint8(index, true));
 		}
 		$("#xbattvalue).text(newstr);
 	}
