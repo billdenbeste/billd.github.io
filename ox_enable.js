@@ -51,7 +51,7 @@ $(function() {
 		for(; index + 1 < value.bytelength; index += 1 ) {
 			newstr.push(value.getUint8(index, true));
 		}
-		$("#xbattvalue).text(newstr);
+		$("#xbattvalue").text(newstr);
 	}
 
 	function disconnect() {
