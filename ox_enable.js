@@ -41,14 +41,14 @@ $(function() {
 			.then( characteristic.oncharacteristicValuechanged = handleXBattV );
 		})
 
-		.then( function(service) {
-			return service.getCharacteristic( IBATTV_SERVICE_UUID );
-		})
-
-		.then( function(characteristic) {
-			characteristic.startNotifications()
-			.then( characteristic.oncharacteristicValuechanged = handleIBattV );
-		})
+//		.then( function(service) {
+//			return service.getCharacteristic( IBATTV_SERVICE_UUID );
+//		})
+//
+//		.then( function(characteristic) {
+//			characteristic.startNotifications()
+//			.then( characteristic.oncharacteristicValuechanged = handleIBattV );
+//		})
 
 		.catch(error => { console.error(error); });
 	}
@@ -58,10 +58,10 @@ $(function() {
 		$("#xbattvalue").text("" + value);
 	}
 
-	function handleIBattV(event) {
-		var value = event.target.value.getUint8(0);
-		$("#ibattvalue").text("" + value);
-	}
+//	function handleIBattV(event) {
+//		var value = event.target.value.getUint8(0);
+//		$("#ibattvalue").text("" + value);
+//	}
 
 	function disconnect() {
 		if( OxDevice ) {
