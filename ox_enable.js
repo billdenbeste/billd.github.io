@@ -47,7 +47,10 @@ $(function() {
 
 	function handleXBattV(event) {
 		var value = event.target.value;
-		let a = String.fromCharCode.apply(null, new Uint8Array(value));
+		let a = [];
+		for( let i = 0; i < value.byteLength; i++ ) {
+			a[i] = value.getUint8(i);
+		}
 		$("#xbattvalue").text( a );
 	}
 
