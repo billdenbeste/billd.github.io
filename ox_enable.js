@@ -27,6 +27,7 @@ $(function() {
 
 		.then( function(device) {
 			OxDevice = device;
+			$("#device_name").text(OxDevice.name);
 			return device.gatt.connect();
 		})
 
@@ -102,6 +103,7 @@ $(function() {
 
 	$("#disconnect").click(() => {
 		disconnect();
+		$("#device_name").text("");
 	});
 
 	$("#enable").click(() => {
