@@ -13,10 +13,11 @@ var OxDevice;
 $(function() {
 	function connect() {
 		var requestDeviceParams = {
-			services: [ BATTERY_SERVICE_UUID ],
-			services: [ ENABLE_SERVICE_UUID ],
-			acceptAllDevices: true
-			
+			filters: [
+				{namePrefix: 'Ox' }
+			],
+			optionalServices: [ BATTERY_SERVICE_UUID ],
+			optionalServices: [ ENABLE_SERVICE_UUID ]
 		};
 
 		navigator.bluetooth.requestDevice( requestDeviceParams )
