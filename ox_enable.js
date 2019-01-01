@@ -9,7 +9,7 @@ const ENABLE_SERVICE_UUID     = "f3e031b2-f057-4dbc-917d-8cacf6e78234";
 const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
-var OxServer;
+var OxBattService;
 
 $(function() {
 	function connect() {
@@ -28,12 +28,12 @@ $(function() {
 		})
 
 		.then( function(server) {
-			OxServer = server;
 			return server.getPrimaryService( BATTERY_SERVICE_UUID );
 		})
 
 
 		.then( function(service) {
+			OxBattService = service;
 			return service.getCharacteristic( XBATTV_CHAR_UUID );
 		})
 
@@ -43,8 +43,8 @@ $(function() {
 			})
 		})
 
-		.then( function(OxServer) {
-			return OxServer.getCharacteristic( IVATTV_CHAR_UUID );
+		.then( function(OxService) {
+			return OxService.getCharacteristic( IVATTV_CHAR_UUID );
 		})
 
 		.then( function(characteristic) {
