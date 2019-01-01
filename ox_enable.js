@@ -27,6 +27,7 @@ $(function() {
 		$("#enable").hide();
 		$("#xbattvalue").text("");
 		$("#ibattvalue").text("");
+		$("#disconnect").hide();
 
 		navigator.bluetooth.requestDevice( requestDeviceParams )
 
@@ -34,6 +35,7 @@ $(function() {
 			OxDevice = device;
 			$("#device_name").text(OxDevice.name);
 			$("#connect").hide();
+			$("#disconnect").show();
 			return device.gatt.connect();
 		})
 
