@@ -49,7 +49,7 @@ $(function() {
 		var value = event.target.value;
 		let a = "";
 		for( let i = 0; i < value.byteLength; i++ ) {
-			a += String.fromCharCode(parseInt(array[i],2));
+			a += String.fromCharCode(parseInt(value[i],2));
 		}
 		$("#xbattvalue").text( a );
 	}
