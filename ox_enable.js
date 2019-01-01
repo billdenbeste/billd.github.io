@@ -23,6 +23,7 @@ $(function() {
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 		};
 
+		$("#connect").show();
 		$("#enable").hide();
 		$("#xbattvalue").text("");
 		$("#ibattvalue").text("");
@@ -32,6 +33,7 @@ $(function() {
 		.then( function(device) {
 			OxDevice = device;
 			$("#device_name").text(OxDevice.name);
+			$("#connect").hide();
 			return device.gatt.connect();
 		})
 
@@ -113,6 +115,7 @@ $(function() {
 
 	$("#disconnect").click(() => {
 		disconnect();
+		$("#connect").show();
 		$("#device_name").text("not connected");
 		$("#enable").hide();
 		$("#xbattvalue").text("");
