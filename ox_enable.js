@@ -38,7 +38,7 @@ $(function() {
 
 		.then( function(characteristic) {
 			characteristic.startNotifications()
-			.then( char => {characteristic.addEventListener('characteristicValueChanged', handleXBattV)
+			.then( char => {characteristic.addEventListener('characteristicValuechanged', handleXBattV)
 			})
 		})
 
