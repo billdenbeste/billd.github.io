@@ -50,7 +50,7 @@ $(function() {
 			.then( characteristic.oncharacteristicValuechanged = handleIBattV );
 		})
 
-		.catch(error => { console.log(error); });
+		.catch(error => { console.error(error); });
 	}
 
 	function handleXBattV(event) {
