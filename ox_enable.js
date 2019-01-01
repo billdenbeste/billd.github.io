@@ -90,12 +90,10 @@ $(function() {
 	}
 
 	function EnableOx() {
-		if( OxEnableService ) {
-			return OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
-			.then( function(characteristic) {
-				var setEnable = Uint8Array.of( 0x31 );
-				characteristic.writeValue( setEnable );
-			}
+		char = OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
+		.then( function(char) {
+			var setEnable = Uint8Array.of( 0x31 );
+			char.writeValue( setEnable );
 		}
 	}
 
