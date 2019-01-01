@@ -103,7 +103,7 @@ $(function() {
 
 	$("#disconnect").click(() => {
 		disconnect();
-		$("#device_name").text("");
+		$("#device_name").text("not connected");
 	});
 
 	$("#enable").click(() => {
