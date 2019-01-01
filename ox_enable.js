@@ -16,7 +16,7 @@ $(function() {
 			filters: [
 				{namePrefix: 'Ox' }
 			],
-			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ],
+			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 //			optionalServices: [ ENABLE_SERVICE_UUID ]
 		};
 
