@@ -23,6 +23,8 @@ $(function() {
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 		};
 
+		$("#enable").hide();
+
 		navigator.bluetooth.requestDevice( requestDeviceParams )
 
 		.then( function(device) {
@@ -68,6 +70,7 @@ $(function() {
 
 		.then( function(characteristic) {
 			OxEnableChar = characteristic;
+			$("#enable").show();
 		})
 
 		.catch(error => { console.error(error); });
@@ -109,6 +112,7 @@ $(function() {
 	$("#disconnect").click(() => {
 		disconnect();
 		$("#device_name").text("not connected");
+		$("#enable").hide();
 	});
 
 	$("#enable").click(() => {
