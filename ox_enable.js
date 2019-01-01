@@ -13,7 +13,10 @@ var OxDevice;
 $(function() {
 	function connect() {
 		var requestDeviceParams = {
-			services: [ "f3e031b2-f057-4dbc-917d-8cacf6e78234" ],
+			filters: [
+				{ services: [ BATTERY_SERVICE_UUID ]},
+				{ services: [ ENABLE_SERVICE_UUID ]},
+			],
 			acceptAllDevices: true
 		};
 
