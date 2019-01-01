@@ -9,6 +9,7 @@ const ENABLE_SERVICE_UUID     = "f3e031b2-f057-4dbc-917d-8cacf6e78234";
 const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
+var OxServer;
 
 $(function() {
 	function connect() {
@@ -17,7 +18,6 @@ $(function() {
 				{namePrefix: 'Ox' }
 			],
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
-//			optionalServices: [ ENABLE_SERVICE_UUID ]
 		};
 
 		navigator.bluetooth.requestDevice( requestDeviceParams )
@@ -28,6 +28,7 @@ $(function() {
 		})
 
 		.then( function(server) {
+			OxServer = server;
 			return server.getPrimaryService( BATTERY_SERVICE_UUID );
 		})
 
@@ -42,6 +43,16 @@ $(function() {
 			})
 		})
 
+		.then( function(OxServer) {
+			return OxServer.getCharacteristic( IVATTV_CHAR_UUID );
+		})
+
+		.then( function(characteristic) {
+			characteristic.startNotifications()
+			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
+			})
+		})		
+
 		.catch(error => { console.error(error); });
 	}
 
@@ -52,6 +63,16 @@ $(function() {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
 		$("#xbattvalue").text( a );
+	}
+
+
+	function handleIBattV(event) {
+		var value = event.target.value;
+		let a = "";
+		for( let i = 0; i < value.byteLength; i++ ) {
+			a += String.fromCharCode( value.getUint8(i) );
+		}
+		$("#ibattvalue").text( a );
 	}
 
 	function disconnect() {
