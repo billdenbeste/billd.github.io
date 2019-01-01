@@ -64,10 +64,10 @@ function disconnect() {
 	}
 }
 
-$("#connect").click( function() {
+$("#connect").click(() => {
 	connect();
 });
 
-$("#disconnect").click( function() {
+$("#disconnect").click(() => {
 	disconnect();
 });
