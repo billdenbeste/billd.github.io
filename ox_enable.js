@@ -90,9 +90,7 @@ $(function() {
 	}
 
 	function EnableOx() {
-		function() {
-			return OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
-		}
+		characteristic = OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 		.then( function(characteristic) {
 			var setEnable = Uint8Array.of( 0x31 );
 			characteristic.writeValue( setEnable );
