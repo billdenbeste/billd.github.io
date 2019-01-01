@@ -46,8 +46,7 @@ $(function() {
 	}
 
 	function handleXBattV(event) {
-		var value = event.target.value.getUint8(0);
-		$("#xbattvalue").text("" + value);
+		var value = event.target.value;
 	}
 
 	function disconnect() {
