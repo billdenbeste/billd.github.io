@@ -103,10 +103,6 @@ $(function() {
 	}
 
 	function disconnect() {
-		if( OxDevice ) {
-			OxDevice.gatt.disconnect();
-		}
-
 		if( XBattChar ) {
 			XBattChar.stopNotifications()
 			.then(_ => { XBattChar.removeEventListener( 'characteristicvaluechanged', handleXBattV);
@@ -117,6 +113,10 @@ $(function() {
 			IBattChar.stopNotifications()
 			.then(_ => { IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
 			})
+		}
+
+		if( OxDevice ) {
+			OxDevice.gatt.disconnect();
 		}
 	}
 
