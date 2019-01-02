@@ -86,7 +86,9 @@ $(function() {
 		}
 		$("#xbattvalue").text( a );
 
-		value = IBattChar.readValue();
+		function() {
+			return IBattChar.readValue();
+		}
 
 		.then( value => {
 			let b = "";
