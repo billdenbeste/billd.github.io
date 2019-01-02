@@ -75,8 +75,10 @@ $(function() {
 		for( let i = 0; i < value.byteLength; i++ ) {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
-		$("#xbattvalue").text( a + 'V');
+
 		XBattValue = (parseFloat(a) / 12) * 100;
+		var Xround = Math.round( XBattValue * 10 / 10 );
+		$("#xbattvalue").text( Xround.toString(10) + 'V');
 		$("#progressbar>div").width( XBattValue + '%');
 
 		if( XBattValue < 35 ) {
@@ -94,7 +96,10 @@ $(function() {
 		for( let i = 0; i < value.byteLength; i++ ) {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
-		$("#ibattvalue").text( a + 'V');
+
+		IBattValue = (parseFloat(a) / 12) * 100;
+		var Xround = Math.round( IBattValue * 10 / 10 );
+		$("#ibattvalue").text( Xround.toString(10) + 'V');
 	}
 
 	async function disconnect() {
