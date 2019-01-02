@@ -61,6 +61,7 @@ $(function() {
 			$("#vbatt").show();
 			$("#ibatt").show();
 			$("#oxstatus").text("Connected to " + OxDevice.name);
+			$("#xbattbar").style.width = 50 + '%';
 
 		} catch( error ) {
 			console(error);
