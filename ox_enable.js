@@ -77,7 +77,7 @@ $(function() {
 		}
 		$("#xbattvalue").text( a );
 		XBattValue = parseFloat(a);
-		$("#progressbar").width( (XBattValue / 12) + '%');
+		$("#progressbar>div").width( (XBattValue / 1.2) + '%');
 	}
 
 	function handleIBattV(event) {
