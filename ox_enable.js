@@ -11,8 +11,8 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 var OxDevice;
 var OxServer;
 var OxBattService;
-var XBattChar;
-var IBattChar;
+var OxXBattChar;
+var OxIBattChar;
 var OxEnableService;
 var OxEnableChar;
 
@@ -21,67 +21,44 @@ $(function() {
 	$("#disconnect").hide();
 	$("#enable").hide();
 
-	function connect() {
+	async function connect() {
 		var requestDeviceParams = {
 			filters: [
 				{namePrefix: 'Ox' }
 			],
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 		};
+		try {
+			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
-		navigator.bluetooth.requestDevice( requestDeviceParams )
-
-		.then( function(device) {
 			OxDevice = device;
 			$("#device_name").text(OxDevice.name);
 			$("#connect").hide();
 			$("#disconnect").show();
-			return device.gatt.connect();
-		})
 
-		.then( function(server) {
-			OxServer = server;
-			return server.getPrimaryService( BATTERY_SERVICE_UUID );
-		})
+			OxServer = await OxDevice.gatt.connect();
 
+			OxBattService = await OxServer.getPrimaryService( BATTERY_SERVICE_UUID );
 
-		.then( function(service) {
-			OxBattService = service;
-			return service.getCharacteristic( XBATTV_CHAR_UUID );
-		})
+			OxXBattChar = OxBattservice.getCharacteristic( XBATTV_CHAR_UUID );
 
-		.then( function(characteristic) {
-			XBattChar = characteristic;
-			characteristic.startNotifications()
-			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleXBattV)
-			})
-		})
+			await OxBattChar.startNotifications();
+			await OxBattChar.addEventListener('characteristicvaluechanged', handleXBattV);
 
-		.then( function() {
-			return OxBattService.getCharacteristic( IBATTV_CHAR_UUID );
-		})
+			OxIBattChar = await OxBattService.getCharacteristic( IBATTV_CHAR_UUID );
 
-		.then( function(characteristic) {
-			IBattChar = characteristic;
-			characteristic.startNotifications()
-			.then( char2 => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
-			})
-		})		
+			await OxIBattChar.startNotifications();
+			await OxIBattChar.addEventListener('characteristicvaluechanged', handleIBattV);
+	
 
-		.then( function() {
-			return OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
-		})
+			OxEnableService - await OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
 
-		.then( function(service) {
-			return service.getCharacteristic( ENABLE_FLAG_UUID );
-		})
+			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
-		.then( function(characteristic) {
-			OxEnableChar = characteristic;
 			$("#enable").show();
-		})
-
-		.catch((error) => { console.error(error); });
+		} catch( error ) {
+			console.error(error);
+		}
 	}
 
 	function handleXBattV(event) {
@@ -102,21 +79,27 @@ $(function() {
 		$("#ibattvalue").text( a );
 	}
 
-	function disconnect() {
+	async function disconnect() {
 		if( XBattChar ) {
-			XBattChar.stopNotifications()
-			.then(_ => { XBattChar.removeEventListener( 'characteristicvaluechanged', handleXBattV);
-			})
+			try {
+				await XBattChar.stopNotifications();
+				await XBattChar.removeEventListener( 'characteristicvaluechanged', handleXBattV);
+			} catch( error ) {
+				console.error(error);
+			}
 		}
 
 		if( IBattChar ) {
-			IBattChar.stopNotifications()
-			.then(_ => { IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
-			})
+			try {
+				await IBattChar.stopNotifications();
+				await IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
+			} catch( error ) {
+				console.error(error);
+			}
 		}
 
 		if( OxDevice ) {
-			OxDevice.gatt.disconnect();
+			await OxDevice.gatt.disconnect();
 		}
 	}
 
