@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Voxx Mobile</title>
   <script src="./jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/23css/4/w3.css">
   <script src="./ox_enable.js"></script>
+  <style>
+    body {background-color: #32A5C6; }
+    #progressbar { 
+      background-color: black;
+      border-radius: 13px;
+      padding: 3px;
+    }
+    #progressbar>div {
+      background-color: orange;
+      width: 40%;
+      height: 20px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -24,7 +37,9 @@
   </div>
   <br>
 
-  <div class="w3-red", id="barbar", style="height:24px;width:33%"></div>
+  <div id="progressbar">
+    <div></div>
+  </div>
 
   <div style="font-size:18px", id="vbatt">
 	<span>Vehicle Battery:&nbsp;</span><span id="xbattvalue">  </span>
