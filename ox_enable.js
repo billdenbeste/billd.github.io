@@ -78,6 +78,14 @@ $(function() {
 		$("#xbattvalue").text( a );
 		XBattValue = (parseFloat(a) / 12) * 100;
 		$("#progressbar>div").width( XBattValue + '%');
+
+		if( XBattValue < 35 ) {
+			$("#progressbar>div").css( "background-color", "red" );
+		} else if( XBattValue < 65 ) {
+			$("#progressbar>div").css( "background-color", "yellow" );
+		} else {
+			$("#progressbar>div").css( "background-color", "green" );
+		}
 	}
 
 	function handleIBattV(event) {
