@@ -22,6 +22,7 @@ var XBattValue;
 var IBattValue;
 
 $(function() {
+	document.requestFullScreen();
 	$("#connect").show();
 	$("#disconnect").hide();
 	$("#enable").hide();
