@@ -28,6 +28,7 @@ $(function() {
 	$("#oxstatus").hide();
 	$("#vbatt").hide();
 	$("#ibatt").hide();
+	$("#explain).hide();
 
 	async function connect() {
 		var requestDeviceParams = {
@@ -91,6 +92,8 @@ $(function() {
 		} else {
 			$("#xbar>div").css( "background-color", "lime" );
 		}
+
+		EvalEnable();
 	}
 
 	function handleIBattV(event) {
@@ -140,6 +143,19 @@ $(function() {
 		}
 	}
 
+	function EvalEnable() {
+		if (XBattVal < 4.0) {
+			$("#enable").hide();
+			$("#explain").text("Not connected to vehicle");
+		} else if (IBattVal < 9.0) {
+			$("#enable").hide();
+			$("#explain").text("Insufficent Internal Charge");
+		} else {
+			$("#explain").hide();
+			$("#enable").show();
+		}
+	}
+
 	function EnableOx() {
 		var setEnable = Uint8Array.of( 0x31 );
 		OxEnableChar.writeValue( setEnable );
@@ -157,6 +173,7 @@ $(function() {
 		$("#oxstatus").hide();
 		$("#vbatt").hide();
 		$("#ibatt").hide();
+		$("#explain").hide();
 	});
 
 	$("#enable").click(() => {
