@@ -39,7 +39,7 @@ $(function() {
 
 			OxBattService = await OxServer.getPrimaryService( BATTERY_SERVICE_UUID );
 
-			OxXBattChar = OxBattservice.getCharacteristic( XBATTV_CHAR_UUID );
+			OxXBattChar = await OxBattservice.getCharacteristic( XBATTV_CHAR_UUID );
 
 			await OxBattChar.startNotifications();
 			await OxBattChar.addEventListener('characteristicvaluechanged', handleXBattV);
