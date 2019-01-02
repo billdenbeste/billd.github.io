@@ -19,6 +19,7 @@ var OxEnableService;
 var OxEnableChar;
 
 var XBattValue;
+var IBattValue;
 
 $(function() {
 	$("#connect").show();
@@ -78,16 +79,17 @@ $(function() {
 
 		var val1 = parseFloat(a);
 		var val2 = Math.trunc( val1 * 10 ) / 10;
+		XBattValue = val2;
 		$("#xbattvalue").text( val2.toString() + 'V');
                 var val3 = (val2 / 12) * 100;
-		$("#progressbar>div").width( val3 + '%');
+		$("#xbar>div").width( val3 + '%');
 
 		if( val3 < 35 ) {
-			$("#progressbar>div").css( "background-color", "red" );
+			$("#xbar>div").css( "background-color", "red" );
 		} else if( val3 < 65 ) {
-			$("#progressbar>div").css( "background-color", "yellow" );
+			$("#xbar>div").css( "background-color", "yellow" );
 		} else {
-			$("#progressbar>div").css( "background-color", "lime" );
+			$("#xbar>div").css( "background-color", "lime" );
 		}
 	}
 
@@ -98,9 +100,20 @@ $(function() {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
 
-		IBattValue = (parseFloat(a) / 12) * 100;
-		var Xround = Math.round( IBattValue * 10 / 10 );
-		$("#ibattvalue").text( Xround.toString() + 'V');
+		var val1 = parseFloat(a);
+		var val2 = Math.trunc( val1 * 10 ) / 10;
+		IBattValue = val2;
+		$("#ibattvalue").text( val2.toString() + 'V');
+                var val3 = (val2 / 12) * 100;
+		$("#ibar>div").width( val3 + '%');
+
+		if( val3 < 35 ) {
+			$("#ibar>div").css( "background-color", "red" );
+		} else if( val3 < 65 ) {
+			$("#ibar>div").css( "background-color", "yellow" );
+		} else {
+			$("#ibar>div").css( "background-color", "lime" );
+		}
 	}
 
 	async function disconnect() {

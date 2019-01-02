@@ -8,12 +8,23 @@
   <script src="./ox_enable.js"></script>
   <style>
     body {background-color: #32A5C6; }
-    #progressbar { 
+    #xbar { 
       background-color: black;
       border-radius: 13px;
       padding: 3px;
     }
-    #progressbar>div {
+    #xbar>div {
+      background-color: orange;
+      width: 40%;
+      height: 20px;
+      border-radius: 10px;
+    }
+    #ibar { 
+      background-color: black;
+      border-radius: 13px;
+      padding: 3px;
+    }
+    #ibar>div {
       background-color: orange;
       width: 40%;
       height: 20px;
@@ -41,7 +52,7 @@
     <div style="width:80%;margin: 0 auto;font-size:18px">
 	<span>Vehicle Battery:&nbsp;</span><span id="xbattvalue">  </span>
     </div>
-    <div style="width:80%;margin: 0 auto", id="progressbar">
+    <div style="width:80%;margin: 0 auto", id="xbar">
       <div></div>
     </div>
   </div>
@@ -51,6 +62,9 @@
   <div id="ibatt">
     <div style="width:80%;margin: 0 auto;font-size:18px">
 	<span>Internal Battery:&nbsp;</span><span id="ibattvalue">  </span>
+    </div>
+    <div style="width:80%;margin: 0 auto", id="ibar">
+      <div></div>
     </div>
   </div>
 
