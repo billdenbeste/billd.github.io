@@ -99,7 +99,7 @@ $(function() {
 
 		IBattValue = (parseFloat(a) / 12) * 100;
 		var Xround = Math.round( IBattValue * 10 / 10 );
-		$("#ibattvalue").text( Xround.toString(10) + 'V');
+		$("#ibattvalue").text( Xround.toString() + 'V');
 	}
 
 	async function disconnect() {
