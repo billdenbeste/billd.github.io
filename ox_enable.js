@@ -31,7 +31,6 @@ $(function() {
 		try {
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
-			OxDevice = device;
 			$("#device_name").text(OxDevice.name);
 			$("#connect").hide();
 			$("#disconnect").show();
