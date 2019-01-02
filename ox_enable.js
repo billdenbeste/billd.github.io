@@ -60,7 +60,7 @@ $(function() {
 
 		.then( function(characteristic) {
 			characteristic.startNotifications()
-			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
+			.then( char2 => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
 			})
 		})		
 
