@@ -22,6 +22,7 @@ $(function() {
 	$("#connect").show();
 	$("#disconnect").hide();
 	$("#enable").hide();
+	$("#status").text("Not Connected");
 
 	async function connect() {
 		var requestDeviceParams = {
@@ -33,7 +34,7 @@ $(function() {
 		try {
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
-			$("#device_name").text(OxDevice.name);
+			$("#status").text("Connected to " + OxDevice.name);
 			$("#connect").hide();
 			$("#disconnect").show();
 
@@ -116,7 +117,7 @@ $(function() {
 		$("#connect").show();
 		$("#disconnect").hide();
 		$("#enable").hide();
-		$("#device_name").text("not connected");
+		$("#status").text("Not Connected");
 		$("#xbattvalue").text("");
 		$("#ibattvalue").text("");
 	});
