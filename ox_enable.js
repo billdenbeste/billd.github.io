@@ -38,9 +38,6 @@ $(function() {
 			$("#disconnect").show();
 
 			OxServer = await OxDevice.gatt.connect();
-	
-			OxEnableService - await OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
-			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			OxBattService = await OxServer.getPrimaryService( BATTERY_SERVICE_UUID );
 			OxXBattChar = await OxBattService.getCharacteristic( XBATTV_CHAR_UUID );
@@ -52,6 +49,9 @@ $(function() {
 
 			await OxIBattChar.startNotifications();
 			await OxIBattChar.addEventListener('characteristicvaluechanged', handleIBattV);
+
+			OxEnableService = await OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			$("#enable").show();
 
