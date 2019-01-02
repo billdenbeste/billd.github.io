@@ -41,8 +41,8 @@ $(function() {
 
 			OxXBattChar = await OxBattService.getCharacteristic( XBATTV_CHAR_UUID );
 
-			await OxBattChar.startNotifications();
-			await OxBattChar.addEventListener('characteristicvaluechanged', handleXBattV);
+			await OxXBattChar.startNotifications();
+			await OxXBattChar.addEventListener('characteristicvaluechanged', handleXBattV);
 
 			OxIBattChar = await OxBattService.getCharacteristic( IBATTV_CHAR_UUID );
 
