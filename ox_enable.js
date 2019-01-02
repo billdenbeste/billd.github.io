@@ -144,10 +144,10 @@ $(function() {
 	}
 
 	function EvalEnable() {
-		if (XBattVal < 4.0) {
+		if (XBattValue < 4.0) {
 			$("#enable").hide();
 			$("#explain").text("Not connected to vehicle");
-		} else if (IBattVal < 9.0) {
+		} else if (IBattValue < 9.0) {
 			$("#enable").hide();
 			$("#explain").text("Insufficent Internal Charge");
 		} else {
