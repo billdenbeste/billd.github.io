@@ -35,9 +35,8 @@ $(function() {
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
 			$("#oxstatus").show();
-			$("#oxstatus").text("Connected to " + OxDevice.name);
+			$("#oxstatus").text("Connecting...");
 			$("#connect").hide();
-			$("#disconnect").show();
 
 			OxServer = await OxDevice.gatt.connect();
 
@@ -56,6 +55,8 @@ $(function() {
 			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			$("#enable").show();
+			$("#disconnect").show();
+			$("#oxstatus").text("Connected to " + OxDevice.name);
 
 		} catch( error ) {
 			console(error);
