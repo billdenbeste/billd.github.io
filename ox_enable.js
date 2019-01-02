@@ -80,19 +80,19 @@ $(function() {
 	}
 
 	async function disconnect() {
-		if( XBattChar ) {
+		if( OxXBattChar ) {
 			try {
-				await XBattChar.stopNotifications();
-				await XBattChar.removeEventListener( 'characteristicvaluechanged', handleXBattV);
+				await OxXBattChar.stopNotifications();
+				await OxXBattChar.removeEventListener( 'characteristicvaluechanged', handleXBattV);
 			} catch( error ) {
-				console.error(error);
+				console(error);
 			}
 		}
 
-		if( IBattChar ) {
+		if( OxIBattChar ) {
 			try {
-				await IBattChar.stopNotifications();
-				await IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
+				await OxIBattChar.stopNotifications();
+				await OxIBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
 			} catch( error ) {
 				console(error);
 			}
