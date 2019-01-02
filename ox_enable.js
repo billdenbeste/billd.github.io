@@ -63,6 +63,7 @@ $(function() {
 			$("#vbatt").show();
 			$("#ibatt").show();
 			$("#oxstatus").text("Connected to " + OxDevice.name);
+			$("#progress").show();
 
 		} catch( error ) {
 			console(error);
@@ -84,7 +85,7 @@ $(function() {
 		} else if( XBattValue < 65 ) {
 			$("#progressbar>div").css( "background-color", "yellow" );
 		} else {
-			$("#progressbar>div").css( "background-color", "green" );
+			$("#progressbar>div").css( "background-color", "lime" );
 		}
 	}
 
@@ -138,6 +139,7 @@ $(function() {
 		$("#oxstatus").hide();
 		$("#vbatt").hide();
 		$("#ibatt").hide();
+		$("#progress").hide();
 	});
 
 	$("#enable").click(() => {
