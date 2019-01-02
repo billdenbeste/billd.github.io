@@ -22,7 +22,6 @@ var XBattValue;
 var IBattValue;
 
 $(function() {
-	document.requestFullScreen();
 	$("#connect").show();
 	$("#disconnect").hide();
 	$("#enable").hide();
@@ -38,6 +37,9 @@ $(function() {
 			],
 			optionalServices: [ BATTERY_SERVICE_UUID, ENABLE_SERVICE_UUID ]
 		};
+
+		document.requestFullscreen();
+
 		try {
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
