@@ -28,7 +28,7 @@ $(function() {
 	$("#oxstatus").hide();
 	$("#vbatt").hide();
 	$("#ibatt").hide();
-	$("#explain).hide();
+	$("#explain").hide();
 
 	async function connect() {
 		var requestDeviceParams = {
