@@ -10,9 +10,11 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 
 var OxDevice;
 var OxServer;
+
 var OxBattService;
 var OxXBattChar;
 var OxIBattChar;
+
 var OxEnableService;
 var OxEnableChar;
 
@@ -36,9 +38,11 @@ $(function() {
 			$("#disconnect").show();
 
 			OxServer = await OxDevice.gatt.connect();
+	
+			OxEnableService - await OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
+			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			OxBattService = await OxServer.getPrimaryService( BATTERY_SERVICE_UUID );
-
 			OxXBattChar = await OxBattService.getCharacteristic( XBATTV_CHAR_UUID );
 
 			await OxXBattChar.startNotifications();
@@ -48,11 +52,6 @@ $(function() {
 
 			await OxIBattChar.startNotifications();
 			await OxIBattChar.addEventListener('characteristicvaluechanged', handleIBattV);
-	
-
-			OxEnableService - await OxServer.getPrimaryService( ENABLE_SERVICE_UUID );
-
-			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			$("#enable").show();
 
