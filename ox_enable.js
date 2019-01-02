@@ -45,22 +45,20 @@ $(function() {
 
 		.then( function(service) {
 			OxBattService = service;
-			return service.getCharacteristic( XBATTV_CHAR_UUID );
+			return service.getCharacteristic( IBATTV_CHAR_UUID );
+		})
+
+		.then( function(characteristic) {
+			IBattChar = characteristic;
+		})
+
+		.then( function() {
+			return OxBattService.getCharacteristic( XBATTV_CHAR_UUID );
 		})
 
 		.then( function(characteristic) {
 			characteristic.startNotifications()
 			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleXBattV)
-			})
-		})
-
-		.then( function() {
-			return OxBattService.getCharacteristic( IBATTV_CHAR_UUID );
-		})
-
-		.then( function(characteristic) {
-			characteristic.startNotifications()
-			.then( char2 => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
 			})
 		})		
 
@@ -87,16 +85,23 @@ $(function() {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
 		$("#xbattvalue").text( a );
+
+		value = IBattChar.readValue();
+		let b = "";
+		for( let j = 0; j < value.byteLength; j++ ) {
+			b += String.fromCharCode( value.getUint8(j) );
+		}
+		$("#ibattvalue").text( b );
 	}
 
-	function handleIBattV(event) {
-		var value = event.target.value;
-		let a = "";
-		for( let i = 0; i < value.byteLength; i++ ) {
-			a += String.fromCharCode( value.getUint8(i) );
-		}
-		$("#ibattvalue").text( a );
-	}
+//	function handleIBattV(event) {
+//		var value = event.target.value;
+//		let a = "";
+//		for( let i = 0; i < value.byteLength; i++ ) {
+//			a += String.fromCharCode( value.getUint8(i) );
+//		}
+//		$("#ibattvalue").text( a );
+//	}
 
 	function disconnect() {
 		if( OxDevice ) {
