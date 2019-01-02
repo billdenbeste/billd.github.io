@@ -57,7 +57,7 @@ $(function() {
 			$("#enable").show();
 
 		} catch( error ) {
-			log(error);
+			console(error);
 		}
 	}
 
@@ -94,7 +94,7 @@ $(function() {
 				await IBattChar.stopNotifications();
 				await IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
 			} catch( error ) {
-				log(error);
+				console(error);
 			}
 		}
 
