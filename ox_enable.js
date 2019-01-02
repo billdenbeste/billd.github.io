@@ -11,6 +11,8 @@ const ENABLE_FLAG_UUID        = "17603fac-2e15-4afd-962d-107464389c5a";
 var OxDevice;
 var OxServer;
 var OxBattService;
+var XBattChar;
+var IBattChar;
 var OxEnableService;
 var OxEnableChar;
 
@@ -49,6 +51,7 @@ $(function() {
 		})
 
 		.then( function(characteristic) {
+			XBattChar = characteristic;
 			characteristic.startNotifications()
 			.then( char => {characteristic.addEventListener('characteristicvaluechanged', handleXBattV)
 			})
@@ -59,6 +62,7 @@ $(function() {
 		})
 
 		.then( function(characteristic) {
+			IBattChar = characteristic;
 			characteristic.startNotifications()
 			.then( char2 => {characteristic.addEventListener('characteristicvaluechanged', handleIBattV)
 			})
@@ -101,6 +105,18 @@ $(function() {
 	function disconnect() {
 		if( OxDevice ) {
 			OxDevice.gatt.disconnect();
+		}
+
+		if( XBattChar ) {
+			XBattChar.stopNotifications();
+			.then( => { XBattChar.removeEventListener( characteristicvaluechanged', handleXBattV);
+			})
+		}
+
+		if( IBattChar ) {
+			IBattChar.stopNotifications();
+			.then( => { IBattChar.removeEventListener( characteristicvaluechanged', handleIBattV);
+			})
 		}
 	}
 
