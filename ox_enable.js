@@ -61,7 +61,6 @@ $(function() {
 			$("#vbatt").show();
 			$("#ibatt").show();
 			$("#oxstatus").text("Connected to " + OxDevice.name);
-			$("#progressbar").progressbar({ value: 55 });
 
 		} catch( error ) {
 			console(error);
