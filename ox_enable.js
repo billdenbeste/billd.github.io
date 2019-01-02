@@ -27,6 +27,7 @@ $(function() {
 	$("#oxstatus").hide();
 	$("#vbatt").hide();
 	$("#ibatt").hide();
+	$("#progress").hide();
 
 	async function connect() {
 		var requestDeviceParams = {
@@ -76,7 +77,7 @@ $(function() {
 		for( let i = 0; i < value.byteLength; i++ ) {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
-		$("#xbattvalue").text( a );
+		$("#xbattvalue").text( a + 'V');
 		XBattValue = (parseFloat(a) / 12) * 100;
 		$("#progressbar>div").width( XBattValue + '%');
 
@@ -95,7 +96,7 @@ $(function() {
 		for( let i = 0; i < value.byteLength; i++ ) {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
-		$("#ibattvalue").text( a );
+		$("#ibattvalue").text( a + 'V');
 	}
 
 	async function disconnect() {
