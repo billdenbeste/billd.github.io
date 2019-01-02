@@ -74,6 +74,8 @@ $(function() {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
 		$("#xbattvalue").text( a );
+		XBattValue = parseFloat(a);
+		$("#progressbar").width( (XBattValue / 12) + '%');
 	}
 
 	function handleIBattV(event) {
