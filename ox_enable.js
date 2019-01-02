@@ -76,14 +76,15 @@ $(function() {
 			a += String.fromCharCode( value.getUint8(i) );
 		}
 
-		XBattValue = (parseFloat(a) / 12) * 100;
-		var Xround = Math.round( XBattValue * 10 / 10 );
-		$("#xbattvalue").text( Xround.toString(10) + 'V');
-		$("#progressbar>div").width( XBattValue + '%');
+		var val1 = parseFloat(a);
+		var val2 = Math.trunc( val1 * 10 ) / 10;
+		$("#xbattvalue").text( val2.toString() + 'V');
+                var val3 = (val2 / 12) * 100;
+		$("#progressbar>div").width( val3 + '%');
 
-		if( XBattValue < 35 ) {
+		if( val3 < 35 ) {
 			$("#progressbar>div").css( "background-color", "red" );
-		} else if( XBattValue < 65 ) {
+		} else if( val3 < 65 ) {
 			$("#progressbar>div").css( "background-color", "yellow" );
 		} else {
 			$("#progressbar>div").css( "background-color", "lime" );
