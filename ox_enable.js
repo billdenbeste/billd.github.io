@@ -18,6 +18,8 @@ var OxIBattChar;
 var OxEnableService;
 var OxEnableChar;
 
+var XBattValue;
+
 $(function() {
 	$("#connect").show();
 	$("#disconnect").hide();
