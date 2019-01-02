@@ -87,21 +87,15 @@ $(function() {
 		$("#xbattvalue").text( a );
 
 		value = IBattChar.readValue();
-		let b = "";
-		for( let j = 0; j < value.byteLength; j++ ) {
-			b += String.fromCharCode( value.getUint8(j) );
-		}
-		$("#ibattvalue").text( b );
-	}
 
-//	function handleIBattV(event) {
-//		var value = event.target.value;
-//		let a = "";
-//		for( let i = 0; i < value.byteLength; i++ ) {
-//			a += String.fromCharCode( value.getUint8(i) );
-//		}
-//		$("#ibattvalue").text( a );
-//	}
+		.then( value => {
+			let b = "";
+			for( let j = 0; j < value.byteLength; j++ ) {
+				b += String.fromCharCode( value.getUint8(j) );
+			}
+			$("#ibattvalue").text( b );
+		})
+	}
 
 	function disconnect() {
 		if( OxDevice ) {
