@@ -55,8 +55,9 @@ $(function() {
 			OxEnableChar = await OxEnableService.getCharacteristic( ENABLE_FLAG_UUID );
 
 			$("#enable").show();
+
 		} catch( error ) {
-			console.error(error);
+			log(error);
 		}
 	}
 
@@ -93,7 +94,7 @@ $(function() {
 				await IBattChar.stopNotifications();
 				await IBattChar.removeEventListener( 'characteristicvaluechanged', handleIBattV);
 			} catch( error ) {
-				console.error(error);
+				log(error);
 			}
 		}
 
