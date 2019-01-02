@@ -109,13 +109,13 @@ $(function() {
 
 		if( XBattChar ) {
 			XBattChar.stopNotifications()
-			.then( => { XBattChar.removeEventListener( characteristicvaluechanged', handleXBattV);
+			.then(_ => { XBattChar.removeEventListener( characteristicvaluechanged', handleXBattV);
 			})
 		}
 
 		if( IBattChar ) {
 			IBattChar.stopNotifications()
-			.then( => { IBattChar.removeEventListener( characteristicvaluechanged', handleIBattV);
+			.then(_ => { IBattChar.removeEventListener( characteristicvaluechanged', handleIBattV);
 			})
 		}
 	}
