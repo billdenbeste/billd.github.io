@@ -23,6 +23,8 @@ $(function() {
 	$("#disconnect").hide();
 	$("#enable").hide();
 	$("#oxstatus").hide();
+	$("#vbatt").hide();
+	$("#ibatt").hide();
 
 	async function connect() {
 		var requestDeviceParams = {
@@ -56,6 +58,8 @@ $(function() {
 
 			$("#enable").show();
 			$("#disconnect").show();
+			$("#vbatt").show();
+			$("#ibatt").show();
 			$("#oxstatus").text("Connected to " + OxDevice.name);
 
 		} catch( error ) {
@@ -120,8 +124,8 @@ $(function() {
 		$("#disconnect").hide();
 		$("#enable").hide();
 		$("#oxstatus").hide();
-		$("#xbattvalue").text("");
-		$("#ibattvalue").text("");
+		$("#vbatt").hide();
+		$("#ibatt").hide();
 	});
 
 	$("#enable").click(() => {
