@@ -42,7 +42,7 @@ $(function() {
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
 			$("#oxstatus").show();
-			$("#oxstatus").text("Connecting...");
+			$("#oxstatus").text("Pairing...");
 			$("#connect").hide();
 
 			OxServer = await OxDevice.gatt.connect();
@@ -65,7 +65,7 @@ $(function() {
 			$("#disconnect").show();
 			$("#vbatt").show();
 			$("#ibatt").show();
-			$("#oxstatus").text("Connected to " + OxDevice.name);
+			$("#oxstatus").text("Paired with " + OxDevice.name);
 
 		} catch( error ) {
 			console(error);
