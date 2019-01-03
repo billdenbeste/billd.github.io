@@ -39,7 +39,7 @@ $(function() {
 		};
 
 		try {
-			$(#"bdy").requestFullscreen();
+			$("#bdy").requestFullscreen();
 			OxDevice = await navigator.bluetooth.requestDevice( requestDeviceParams )
 
 			$("#oxstatus").show();
